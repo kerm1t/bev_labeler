@@ -5,16 +5,16 @@
 
 #include <iostream>
 
-#include "util/config_parser.h"
+#include "include/util/config_parser.h"
 
 //#include "pointcloud.hpp" // has to be before draw.hpp -> 2do, fix!
 //#include "draw.hpp"
 
 
 // LLoFT
-#include "pointcloud/pointcloud.hpp"
-#include "pointcloud/pointcloud_synth.hpp"
-#include "pointcloud/pointcloud_io.hpp"
+#include "include/pointcloud/pointcloud.hpp"
+#include "include/pointcloud/pointcloud_synth.hpp"
+#include "include/pointcloud/pointcloud_io.hpp"
 
 #include <chrono>
 float algo_runtime_ms; // 2do: encapsulate in frs.algo

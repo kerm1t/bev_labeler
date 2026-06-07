@@ -1,8 +1,8 @@
 #ifndef POINTCLOUD_IO_H
 #define POINTCLOUD_IO_H
 
-#include "pointcloud/pointcloud.hpp"
-#include "util/color.h"
+#include "include/pointcloud/pointcloud.hpp"
+#include "include/util/color.h"
 
 #include <string>
 #include <vector>
