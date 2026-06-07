@@ -7,10 +7,6 @@
 
 #include "include/util/config_parser.h"
 
-//#include "pointcloud.hpp" // has to be before draw.hpp -> 2do, fix!
-//#include "draw.hpp"
-
-
 // LLoFT
 #include "include/pointcloud/pointcloud.hpp"
 #include "include/pointcloud/pointcloud_synth.hpp"
@@ -37,33 +33,18 @@ bool bnewframe = false;
 #include "app_algowrp.hpp" // before eCAL
 #include "app_ecal.hpp"
 
-//#include "demo_manager.hpp"
-
-//demo_manager dman;
-
-void publish_with_Mutex(eCAL::protobuf::CPublisher<pcl::PointCloud2>& publisher_frs) {
-  const std::lock_guard<std::recursive_mutex> lock(m_SubscriberMutex);
-  app_ecal::publish(publisher_frs);
-}
-
-void publish_fox_pointcloud_with_Mutex(eCAL::protobuf::CPublisher<foxglove::PointCloud>& publisher_gse_fox) {
-  const std::lock_guard<std::recursive_mutex> lock(m_SubscriberMutex);
-  app_ecal::publish_fox_pointcloud(publisher_gse_fox);
-}
-
 int main(int argc, char** argv)
 {
   user::init_Cfg();
 
   app_ecal::init(argc, argv);
 
+  // load labels from .json file
   int i_toggle = 1;
   std::string filename = "C:/GIT/BEV_labeler/labels.json";
   std::cout << "main.cpp: loading " << filename << std::endl;
   algo::annotations = algo::load_labels(filename);
   algo::print_labels(algo::annotations);
-
-  lloft::publish_ground = true;
 
   // Loop
   bool close = false;
@@ -81,10 +62,7 @@ int main(int argc, char** argv)
 
       lloft::nvertices = p.numpoints; // so here it works, but not in the eCal thread, hmmm
       
-//      publish_with_Mutex(app_ecal::publisher_frs);
-//      app_ecal::publish_Poly(app_ecal::publisher_poly);
       app_ecal::publish_fox_poly(app_ecal::publisher_poly);
-//      publish_fox_pointcloud_with_Mutex(app_ecal::publisher_fox);
 
       bnewframe = false;
       _sleep(500); // ms

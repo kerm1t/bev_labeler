@@ -53,7 +53,7 @@ namespace algo {
 
     auto t2 = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> ms_double = t2 - t1;
-    std::cout << "run_frs " << ms_double.count() << "ms\n";
+    std::cout << "run_bev_anno " << ms_double.count() << "ms\n";
     runtime_ms = ms_double.count();
   }
 }

@@ -62,11 +62,11 @@ link_directories(
 # add WIN32 to remove console window ->
 add_executable (${CMAKE_PROJECT_NAME} #WIN32
 src/main.cpp
-src/main.h
+#src/main.h
 src/app_ecal.hpp
 src/app_algowrp.hpp
-src/anno_io.h
-src/calc_ground_pt.h
+#src/anno_io.h
+#src/calc_ground_pt.h
 # interface
 if/hndl_pointcloud.cpp
 if/hndl_pointcloud.h
