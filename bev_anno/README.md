@@ -1,10 +1,11 @@
+````
 +--   +--- \        /
 [  ]  [     \      /
 +-+   +---   \    /    spacejump.ai
 [  ]  [       \  /
 +--   +---     \/      LABELER
 ====================== (C)2026 ====
-
+````
 Publisher for BEV Labeler annotations
 - read label.json
 - publish to Foxglove SceneUpdate
