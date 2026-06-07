@@ -12,5 +12,4 @@ Editor (html/js)
 Viewer (py-o3d)
 ![image](/img/ScreenCapture_2026-06-06-08-21-35.png)
 
----------------------
 (C) 2026 spacejump.ai
