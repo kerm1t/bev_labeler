@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+import "types.proto";
+import "pcl_header.proto";
+
+package gsm;
+
+message PointLabelInfo
+{
+  int32 label     = 1;
+  float distModelGlobal = 2;
+  float distModelLocal = 3;
+}
+message PointLabelInfoList
+{
+  repeated PointLabelInfo pointLabelInfo = 1;
+}
+message SurfaceNormal
+{
+  float nx = 1;
+  float ny = 2;
+  float nz = 3;
+}
+message NormalList
+{
+  repeated SurfaceNormal normalPoint = 1;
+}
+message GroundModel
+{
+  float modelX  = 1;  // Global grooud model parameters
+  float modelX2 = 2;
+  float modelY  = 3;
+  float modelY2 = 4;
+  float modelD  = 5;
+}
+
+message GsmOutputInfo
+{
+  float	minGroundDist = 1;
+  float	maxGroundDist = 2;
+}
+
+message PointField
+{
+  string name     = 1; // Name of field
+  uint32 offset   = 2; // Offset from start of point struct
+  sint32 datatype = 3; // Datatype enumeration, see above
+  uint32 count    = 4; // How many elements in the field
+}
+
+message PointFieldList
+{
+  repeated PointField pointField = 1;
+}
+
+message GSM_t_ProPortList
+{
+  reserved 2, 6;
+  types.AlgoCompState_t algoCompState       = 1;
+  string                version             = 3;
+  pcl_header.Header     header              = 4;
+  PointLabelInfoList    pointLabelInfoList  = 5;
+  NormalList            normalList          = 7;
+  GroundModel           groundModelParams   = 8;
+  GsmOutputInfo         gsmOutputParams     = 9;
+
+  PointFieldList        pointFieldList      = 10; // Describes the channels and their layout in the binary data blob.
+  uint32                width               = 11; // Number of data points.
+  uint32                step                = 12; // Lenght of a point in bytes.
+  bytes                 data                = 13; // Actual point data, size is (step * width).
+}
