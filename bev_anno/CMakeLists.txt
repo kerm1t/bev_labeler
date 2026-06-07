@@ -23,7 +23,8 @@ set(protobuf_files
   ${CMAKE_CURRENT_SOURCE_DIR}/if/proto/pcl_header.proto
   ${CMAKE_CURRENT_SOURCE_DIR}/if/proto/pcl_pfield.proto
   ${CMAKE_CURRENT_SOURCE_DIR}/if/proto/types.proto
-  ${CMAKE_CURRENT_SOURCE_DIR}/if/proto/lane.proto
+  ${CMAKE_CURRENT_SOURCE_DIR}/if/proto/lane.proto # 2do: remove
+  ${CMAKE_CURRENT_SOURCE_DIR}/if/proto/gsm.proto  # 2do: simplify!
   ${CMAKE_CURRENT_SOURCE_DIR}/if/proto/foxglove/LinePrimitive.proto
 # added for SceneUpdate
   ${CMAKE_CURRENT_SOURCE_DIR}/if/proto/foxglove/SceneEntity.proto
@@ -62,11 +63,11 @@ link_directories(
 # add WIN32 to remove console window ->
 add_executable (${CMAKE_PROJECT_NAME} #WIN32
 src/main.cpp
-#src/main.h
+src/main.h
 src/app_ecal.hpp
 src/app_algowrp.hpp
-#src/anno_io.h
-#src/calc_ground_pt.h
+src/anno_io.h
+src/calc_ground_pt.h
 # interface
 if/hndl_pointcloud.cpp
 if/hndl_pointcloud.h

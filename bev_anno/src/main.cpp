@@ -24,6 +24,8 @@ lloft::pointcloud_io pio(p);
 std::recursive_mutex m_SubscriberMutex; // ecal callback thread
 bool bnewframe = false;
 
+#include "main.h"
+
 #include "init.hpp"
 #include "user.hpp"
 #include "app_algowrp.hpp"
@@ -35,7 +37,7 @@ int main(int argc, char** argv)
 
   app_ecal::init(argc, argv);
 
-  // (1) load labels from .json file
+  // (1) load labels from .json file --> this is done only once
   std::string filename;
   filename = argc > 1 ? argv[1] : "C:/GIT/BEV_labeler/labels.json";
   std::cout << "main.cpp: loading " << filename << std::endl;
@@ -50,7 +52,7 @@ int main(int argc, char** argv)
     {
       auto t1 = std::chrono::high_resolution_clock::now();
       // (2) Run the algo,
-      //     here: compute z for the given (x,y) using the subscribed ground model
+      //     here: compute z for the given (x,y) using the subscribed ground model --> this is done each frame
       algo::run_with_Mutex();
       auto t2 = std::chrono::high_resolution_clock::now();
       std::chrono::duration<double, std::milli> ms_double = t2 - t1;
