@@ -1,7 +1,7 @@
 ````
 +--   +--- \        /
 |  ]  |     \      /
-+-+   +---   \    /    spacejump.ai
++-+   +---   \    /
 |  ]  |       \  /
 +--   +---     \/      LABELER
 ====================== (C)2026 ====
@@ -9,6 +9,8 @@
 
 Publisher for BEV Labeler annotations
 - read label.json
+- subscribe to ground model
+- compute polygon point z-coord using the ground model
 - publish to Foxglove SceneUpdate
 
 ----------------------------------------------------------------------------
@@ -30,5 +32,4 @@ structure:
 - include // 2do: this has to come from libLT
 - src
 
----------------------
 (C) 2026 spacejump.ai
