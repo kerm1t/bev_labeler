@@ -1,8 +1,8 @@
 #ifndef POINTCLOUD_H
 #define POINTCLOUD_H
 
-#include "math/linmath.h"
-#include "math/mathbase.h"
+#include "include/math/linmath.h"
+#include "include/math/mathbase.h"
 
 #include <memory.h>
 #include <vector>

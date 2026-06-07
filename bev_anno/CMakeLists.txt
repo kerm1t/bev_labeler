@@ -48,36 +48,39 @@ set(protobuf_files
 )
 
 include_directories(.
-./src
-./src/features
-./src/math
-./src/pointcloud
-./src/util
-./src/frs
+src
+include/features
+include/math
+include/pointcloud
+include/util
 )
 
+# legacy ->
 link_directories(
-  ${CMAKE_CURRENT_SOURCE_DIR}/../../lib/${glew}/lib/release/x64
   ${CMAKE_CURRENT_SOURCE_DIR}/../../lib)
 
 # add WIN32 to remove console window ->
 add_executable (${CMAKE_PROJECT_NAME} #WIN32
-./src/main.cpp
-./if/hndl_pointcloud.cpp
-./if/hndl_pointcloud.h
-./src/pointcloud/pointcloud.hpp
-./src/pointcloud/pointcloud_io.hpp
-./src/pointcloud/pointcloud_synth.hpp
-./src/math/linmath.h
-./src/math/mathbase.h
-./src/util/color.h
-src/user.hpp
-./src/util/nlohmann/json.hpp
-./src/util/nlohmann/json_fwd.hpp
-src/util/config_parser.h
-src/util/config_parser.cpp
+src/main.cpp
+src/main.h
 src/app_ecal.hpp
 src/app_algowrp.hpp
+src/anno_io.h
+src/calc_ground_pt.h
+# interface
+if/hndl_pointcloud.cpp
+if/hndl_pointcloud.h
+# includes
+include/pointcloud/pointcloud.hpp
+include/pointcloud/pointcloud_io.hpp
+include/pointcloud/pointcloud_synth.hpp
+include/math/linmath.h
+include/math/mathbase.h
+include/util/color.h
+include/util/nlohmann/json.hpp
+include/util/nlohmann/json_fwd.hpp
+include/util/config_parser.h
+include/util/config_parser.cpp
 )
 
 PROTOBUF_TARGET_CPP(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/if/proto/ ${protobuf_files})
@@ -90,11 +93,10 @@ PROTOBUF_TARGET_CPP(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/if/proto/ ${prot
 
 target_link_libraries(${CMAKE_PROJECT_NAME}
   eCAL::core protobuf::libprotobuf
-  ${SDL2_LIBRARIES}
-)# grrr, glew is so shitty glew32.lib)
+)
 
 if (MSVC)
 else()
 # Linux -->
-target_link_libraries(${PROJECT_NAME} GL SDL2 GLEW ${CMAKE_DL_LIBS})
+target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS})
 endif()

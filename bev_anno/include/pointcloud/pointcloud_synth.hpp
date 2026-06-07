@@ -1,7 +1,7 @@
 #ifndef POINTCLOUD_SYNTH_H
 #define POINTCLOUD_SYNTH_H
 
-#include "pointcloud/pointcloud.hpp"
+#include "include/pointcloud/pointcloud.hpp"
 
 #include <iostream>
 
